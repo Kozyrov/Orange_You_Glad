@@ -1,11 +1,30 @@
 $(document).ready(function(){
     $(":button").click(function(){
-        //this function will intake the user's selection
-        form_handler();
+        let email_regex = /^[a-zA-Z0-9_\.\+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-\.]+$/
+        let email = $("input[type='text'][name='user_email']").val();
+        let final_answer = $("input[type='radio'][name='fruit_box']:checked").val();
+    //this function will first validate the forms
+        if (email_regex.test(email)!==true){
+            console.log("the email entered is not valid");
+            return;
+        } else {
+            console.log("Email valid")
+            //hand the newly validate email to the user object constructor
+            win_condition(new User_result(email, final_answer));
+        }        
     });
 })
-
-function form_handler() {
-    //determine which answer was selected
-    console.log($("input[type='radio'][name='fruit_box']:checked").val());
+function win_condition(current_user) {
+    let correct_answer = "both"
+    console.log(current_user.answer);
+    if (current_user.answer===correct_answer){
+        console.log("you've answered correctly");
+    } else {
+        console.log("you've answered incorreectly");
+    }
 }
+function User_result(email,answer){
+    this.email = email;
+    this.answer = answer;
+}
+
