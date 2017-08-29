@@ -18,13 +18,19 @@ function win_condition(current_user) {
     let correct_answer = "both"
     console.log(current_user.answer);
     if (current_user.answer===correct_answer){
+        current_user.correct=true;
         console.log("you've answered correctly");
     } else {
+        current_user.correct=false;
         console.log("you've answered incorreectly");
     }
 }
+
+function input_result(current_user){}
+
 function User_result(email,answer){
     this.email = email;
     this.answer = answer;
+    this.correct= null;
 }
 
