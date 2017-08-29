@@ -58,4 +58,7 @@ typings/
 .env
 
 # Config files
-server/config.js
+server/config
+
+# Test files
+server/playground/
