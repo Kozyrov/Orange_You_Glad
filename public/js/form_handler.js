@@ -33,7 +33,7 @@ function input_result(user_result){
         dataType: 'JSON',
         data: user_result,
         method:'POST',
-        url: 'https://orange-you-glad.herokuapp.com/results',
+        url: 'https://orange-you-glad.herokuapp.com//results',
         success: (res)=>{
             console.log(res);
         },
