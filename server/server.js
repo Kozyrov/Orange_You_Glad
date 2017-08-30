@@ -1,35 +1,26 @@
-var {mogoose} = require('./db/mongoose')
+const express = require('express');
+const bodyParser = require('body-parser');
 
-var Result = mongoose.model('Results', {
-    correct: {
-        type: Boolean,
-        required: true
-    },
-    answer: {
-        type: String,
-        required: true,
-        enum: ["apples", "oranges", "both"] 
-    },
-    user_email: {
-        type: String,
-        required: true,
-        trim: true,
-        validate: {
-            validator: (val)=>{
-                return /^[a-zA-Z0-9_\.\+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-\.]+$/.test(val);
-            }
-        }
-    }
+const {mogoose} = require('./db/mongoose');
+const {Result} = require('./models/result');
+
+var app = express();
+
+app.use(bodyParser.json());
+
+app.post('/results', (req, res)=>{
+    let result = new Result({
+        correct:req.body.correct,
+        answer:req.body.answer,
+        user_email:req.body.user_email
+    });
+    result.save().then((doc)=>{
+        res.send(doc);
+    }, (err)=>{
+        res.send(err);
+    })
 });
 
-var newResult = new Result({
-    correct: true,
-    answer: "both",
-    user_email: "sfrankie11@gmail.com"
-});
-
-newResult.save().then((data)=>{
-    console.log('Result saved', data)
-}, (err)=>{
-    console.log('Unable to save result', err)
+app.listen(3001, ()=>{
+    console.log('Orange you glad the app is working on port 3001');
 })
