@@ -1,14 +1,20 @@
 const express = require('express');
+const path = require('path');
 const MongoClient = require('mongodb').MongoClient;
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 //getting the express app started
 var app = express();
 
-//the only route
+app.use(express.static(path.resolve('public')));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, "public", "index.html"));
+})
+
 app.post('/results', (req, res)=>{
     res.send('')
-} )
+})
 
 //listens for a successful connection and reports that back
 app.listen(PORT, () => {
