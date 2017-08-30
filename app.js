@@ -8,10 +8,6 @@ var app = express();
 
 app.use(express.static(path.resolve('public')));
 
-//the only route
-// app.get('/', (req, res)=>{
-    // res.sendFile(path.resolve(__dirname,'public','index.html'));
-// })
 app.post('/results', (req, res)=>{
     res.send('')
 } )
