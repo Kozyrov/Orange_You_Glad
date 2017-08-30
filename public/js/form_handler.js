@@ -26,7 +26,16 @@ function win_condition(current_user) {
     }
 }
 
-function input_result(current_user){}
+function input_result(current_user){
+    $.ajax ({
+        dataType: 'JSON',
+        data: {
+            current_user: current_user
+        },
+        method:'POST',
+        url: '/result' 
+    })
+}
 
 function User_result(email,answer){
     this.email = email;
