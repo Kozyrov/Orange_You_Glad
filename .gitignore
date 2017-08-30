@@ -58,7 +58,6 @@ typings/
 .env
 
 # Db conncetion files
-server/db/mongoose.js
 
 # Test files
 server/playground/
