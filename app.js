@@ -6,7 +6,11 @@ const PORT = 3001;
 //getting the express app started
 var app = express();
 
-app.use(express.static(path.resolve('public')));
+// app.use(express.static(path.resolve('public')));
+
+app.get('/', (req, res) => {
+    res.sendFile("public/index.html");
+})
 
 app.post('/results', (req, res)=>{
     res.send('')
