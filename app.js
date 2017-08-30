@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3001;
 //getting the express app started
 var app = express();
 
-app.use(express.static(path.resolve('public')));
+// app.use(express.static(path.resolve('public')));
 
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, "public", "index.html"));
