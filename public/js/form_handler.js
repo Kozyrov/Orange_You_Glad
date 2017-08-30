@@ -17,6 +17,7 @@ $(document).ready(function(){
             win_condition(new User_result(email, final_answer));
         }  
         $(":button").val("Submitted")
+        $("input[type='radio']").attr("disabled", true);
     });
 });
 
