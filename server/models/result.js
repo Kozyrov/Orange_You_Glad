@@ -1,18 +1,15 @@
-var {mogoose} = require('./db/mongoose')
+const mongoose = require('mongoose');
 
 var Result = mongoose.model('Results', {
     correct: {
         type: Boolean,
-        required: true
     },
     answer: {
         type: String,
-        required: true,
         enum: ["apples", "oranges", "both"] 
     },
     user_email: {
         type: String,
-        required: true,
         trim: true,
         validate: {
             validator: (val)=>{
@@ -22,14 +19,4 @@ var Result = mongoose.model('Results', {
     }
 });
 
-var newResult = new Result({
-    correct: true,
-    answer: "both",
-    user_email: "sfrankie11@gmail.com"
-});
-
-newResult.save().then((data)=>{
-    console.log('Result saved', data)
-}, (err)=>{
-    console.log('Unable to save result', err)
-})
+module.exports = {Result};
