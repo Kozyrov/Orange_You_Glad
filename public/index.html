@@ -1,23 +1,46 @@
 <!doctype html>
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script rel="script" type="text/javascript" src="./js/form_handler.js"></script>
 </head>
 <body>
     <div>
-        <form>
-            Email Address <br>
-            <input type="text" name="user_email">
-        </form>
+        <h1>Brain Teaser</h1><br>
+        <h3>Boxes of Fruit</h3><br>
+        <img src="./../assets/images/apple.png" alt=""><img src="./../assets/images/orange.png" alt="">
+        <div>
+            <p>Problem: There are three boxes of fruit. One box is full of oranges only. A second box is full of apples only. A third box is a random mix of both. But, all three boxes are mislabelled. For example, the box labelled "Apples" may very well be only oranges, or have both Oranges and Apples.</p>
+        </div>
+        <div>
+            <p>Solution: Determine the correct contents of all three boxes by recealing one fruit only from one box only. If you coose correctly, you will be able to determine the correct contents of all three boxes. <br> Hint: the boxes are mislabelled, so remember that the "apples" box cannot contain apples.</p>
+        </div>
+        <div>
+            <p>STEP 1L Save your answers using your email address.</p><br>
+            <form>
+                Email Address <br>
+                <input type="text" name="user_email">
+            </form>
+        </div>
+        <div>
+            <p>STEP 2: Select a box to reveal a fruit by clicking on one of the options below.</p>
+             <form>
+                <input type="radio" name="fruit_box" value="apples" checked > Apples
+                <input type="radio" name="fruit_box" value="oranges" > Oranges
+                <input type="radio" name="fruit_box" value="both" > Both <br>
+            </form>
+            <div class="selection"></div>
+            <div class="fruit_revealed"></div>
+        </div>
+        <div>
+            <p>STEP 3:Once you've decided on your answer, click the "submit answer button below to finalize your answer."</p>
+            <form>
+                <input name="final_answer" type="button" value="Final Answer">
+            </form>
+        </div>
     </div>
-    <div>
-         <form>
-            <input type="radio" name="fruit_box" value="apples" checked> Apples
-            <input type="radio" name="fruit_box" value="oranges"> Oranges
-            <input type="radio" name="fruit_box" value="both"> Both <br>
-            <input name="final_answer" type="button" value="Final Answer">
-        </form>
-    </div>
+    
 </body>
 </html>
