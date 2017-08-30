@@ -1,11 +1,17 @@
 const express = require('express');
+const path = require('path');
 const MongoClient = require('mongodb').MongoClient;
 const PORT = 3001;
 
 //getting the express app started
 var app = express();
 
+app.use(express.static(path.resolve('public')));
+
 //the only route
+// app.get('/', (req, res)=>{
+    // res.sendFile(path.resolve(__dirname,'public','index.html'));
+// })
 app.post('/results', (req, res)=>{
     res.send('')
 } )
