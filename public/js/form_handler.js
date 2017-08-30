@@ -27,12 +27,13 @@ function win_condition(current_user) {
     input_result(current_user);
 }
 
-function input_result(current_user){
-    console.log(current_user);
+function input_result(user_result){
     $.ajax ({
         dataType: 'JSON',
         data: {
-            current_user: current_user
+            correct:user_result.correct,
+            answer:user_result.answer,
+            user_email:user_result.user_email
         },
         method:'POST',
         url: 'https://orange-you-glad.herokuapp.com/results',
