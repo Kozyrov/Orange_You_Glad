@@ -1,13 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 
-const {mogoose} = require('./db/mongoose');
-const {Result} = require('./models/result');
+const {mogoose} = require('./server/db/mongoose');
+const {Result} = require('./server/models/result');
 
 var app = express();
 const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
+app.use(express.static(path.resolve('public')));
+
+app.get('/', (req, res)=>{
+    res.sendFile(path.resolve(__dirname, "public", "index.html"))
+})
 
 app.post('/results', (req, res)=>{
     let result = new Result({
