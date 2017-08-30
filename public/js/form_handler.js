@@ -15,7 +15,8 @@ $(document).ready(function(){
             console.log("Email valid")
             //hand the newly validate email to the user object constructor
             win_condition(new User_result(email, final_answer));
-        }        
+        }  
+        $(":button").val("Submitted")
     });
 });
 
@@ -32,10 +33,10 @@ function win_condition(current_user) {
     let correct_answer = "both"
     if (current_user.answer===correct_answer){
         current_user.correct=true;
-        console.log("you've answered correctly");
+        $(".user_report").text("you've answered correctly!");
     } else {
         current_user.correct=false;
-        console.log("you've answered incorreectly");
+        $('.user_report').text("you've answered incorrectly. If you'd like to try again refresh the page.");
     }
     input_result(current_user);
 }
