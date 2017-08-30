@@ -28,6 +28,7 @@ function win_condition(current_user) {
 }
 
 function input_result(user_result){
+    console.log(user_result);
     $.ajax ({
         dataType: 'JSON',
         data: {
