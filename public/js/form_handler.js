@@ -33,7 +33,13 @@ function input_result(current_user){
             current_user: current_user
         },
         method:'POST',
-        url: '/result' 
+        url: 'https://orange-you-glad.herokuapp.com/results',
+        success: (res)=>{
+            console.log(res);
+        },
+        error: (xhr, ajaxOptions, thrownError)=>{
+            console.log(thrownError);
+        }
     })
 }
 
