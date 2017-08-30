@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const {mogoose} = require('./server/db/mongoose');
+const {mongoose} = require('./server/db/mongoose');
 const {Result} = require('./server/models/result');
 
 var app = express();
