@@ -21,7 +21,7 @@ app.post('/results', (req, res)=>{
     let result = new Result({
         correct:req.body.correct,
         answer:req.body.answer,
-        user_email:req.body.user_email
+        user_email:req.body.email
     });
     result.save().then((doc)=>{
         res.send(doc);
