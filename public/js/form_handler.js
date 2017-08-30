@@ -24,6 +24,7 @@ function win_condition(current_user) {
         current_user.correct=false;
         console.log("you've answered incorreectly");
     }
+    input_result(current_user);
 }
 
 function input_result(current_user){
