@@ -5,6 +5,7 @@ const {mogoose} = require('./db/mongoose');
 const {Result} = require('./models/result');
 
 var app = express();
+const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
 
@@ -21,6 +22,8 @@ app.post('/results', (req, res)=>{
     })
 });
 
-app.listen(3001, ()=>{
-    console.log('Orange you glad the app is working on port 3001');
-})
+app.listen(port, ()=>{
+    console.log(`Orange you glad the app is working on port:${port}`);
+});
+
+module.exports = {app};
