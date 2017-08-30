@@ -16,6 +16,7 @@ app.get('/', (req, res)=>{
 })
 
 app.post('/results', (req, res)=>{
+    console.log(req);
     let result = new Result({
         correct:req.body.correct,
         answer:req.body.answer,

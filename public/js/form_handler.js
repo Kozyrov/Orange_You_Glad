@@ -31,11 +31,7 @@ function input_result(user_result){
     console.log(user_result);
     $.ajax ({
         dataType: 'JSON',
-        data: {
-            correct:user_result.correct,
-            answer:user_result.answer,
-            user_email:user_result.user_email
-        },
+        data: user_result,
         method:'POST',
         url: 'https://orange-you-glad.herokuapp.com/results',
         success: (res)=>{
