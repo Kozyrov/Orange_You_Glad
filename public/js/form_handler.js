@@ -1,4 +1,8 @@
 $(document).ready(function(){
+    $(":radio").click(()=>{
+        let selected = $("input[type='radio'][name='fruit_box']:checked").val();
+        $(".selection").text("you've selected, " + selected)
+    })
     $(":button").click(function(){
         let email_regex = /^[a-zA-Z0-9_\.\+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-\.]+$/
         let email = $("input[type='text'][name='user_email']").val();
@@ -13,10 +17,19 @@ $(document).ready(function(){
             win_condition(new User_result(email, final_answer));
         }        
     });
-})
+});
+
+function random_fruit(){
+    let random = Math.round(Math.random());
+    if (random===1){
+        $(".fruit_revealed").attr("src", "./../assets/images/apple.png");
+    } else {
+        $(".fruit_revealed").attr("src", "./../assets/images/orange.png");
+    }
+}
+
 function win_condition(current_user) {
     let correct_answer = "both"
-    console.log(current_user.answer);
     if (current_user.answer===correct_answer){
         current_user.correct=true;
         console.log("you've answered correctly");
@@ -24,16 +37,22 @@ function win_condition(current_user) {
         current_user.correct=false;
         console.log("you've answered incorreectly");
     }
+    input_result(current_user);
 }
 
-function input_result(current_user){
+function input_result(user_result){
+    console.log(user_result);
     $.ajax ({
         dataType: 'JSON',
-        data: {
-            current_user: current_user
-        },
+        data: user_result,
         method:'POST',
-        url: '/result' 
+        url: 'https://orange-you-glad.herokuapp.com/results',
+        success: (res)=>{
+            console.log(res);
+        },
+        error: (xhr, ajaxOptions, thrownError)=>{
+            console.log(thrownError);
+        }
     })
 }
 
