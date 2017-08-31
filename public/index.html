@@ -78,14 +78,14 @@
                 <p>STEP 3:Now drag the above fruit boxes to the relabeling zones below to have their labels replaced properly. Once you are sure of your answer, please press the relabel button below."</p>                    
             </div>
             <div class="row">
-                <div id="apple_zone" class="relabel_zone col-sm-3 col-sm-offset-2">
-                    <div ondragover="goodToDrag(event)" ondrop="drop(event)" class="drop_zone"></div>
+                <div class="relabel_zone col-sm-3 col-sm-offset-2">
+                    <div ondragover="goodToDrag(event)" ondrop="drop(event)" id="apple_zone" class="drop_zone"></div>
                 </div>
-                <div id="orange_zone" class="relabel_zone col-sm-3 col-sm-offset-1">
-                    <div ondragover="goodToDrag(event)" ondrop="drop(event)" class="drop_zone"></div>
+                <div class="relabel_zone col-sm-3 col-sm-offset-1">
+                    <div ondragover="goodToDrag(event)" ondrop="drop(event)" id="orange_zone" class="drop_zone"></div>
                 </div>
-                <div id="mixed_zone" class="relabel_zone col-sm-3 col-sm-offset-1">
-                    <div ondragover="goodToDrag(event)" ondrop="drop(event)" class="drop_zone"></div>
+                <div class="relabel_zone col-sm-3 col-sm-offset-1">
+                    <div ondragover="goodToDrag(event)" ondrop="drop(event)" id="mixed_zone" class="drop_zone"></div>
                 </div>
             </div>
             <div class="row">
@@ -93,11 +93,12 @@
                 <p class="col-sm-3">Oranges</p>
                 <p class="col-sm-3">Mixed</p>
             </div>
-            <form>
-                <input name="final_answer" type="button" value="Final Answer">
-            </form>
+            <div class="row">
+                <div class="col-sm-3 col-sm-offset-5 button_resize">
+                    <button type="button" class="btn btn-danger">Relabel Boxes</button>
+                </div>
+            </div>
         </div>
-        <div class="user_report"></div>
     </div>
 </body>
 </html>

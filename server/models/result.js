@@ -5,8 +5,7 @@ var Result = mongoose.model('Results', {
         type: Boolean,
     },
     answer: {
-        type: String,
-        enum: ["apples", "oranges", "both"] 
+        type: Array,
     },
     user_email: {
         type: String,
