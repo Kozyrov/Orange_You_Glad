@@ -8,97 +8,139 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h1>Brain Teaser</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h4>Boxes of Fruit</h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <img src="./assets/images/apple.png" alt="">
-                <img src="./assets/images/orange.png" alt="">
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <p>Problem: There are three boxes of fruit. One box is full of oranges only. A second box is full of apples only. A third box is a random mix of both. But, all three boxes are mislabelled. For example, the box labelled "Apples" may very well be only oranges, or have both Oranges and Apples.</p>                    
-            </div>
-        </div>
-        <div class="container">
-            <p>Solution: Determine the correct contents of all three boxes by revealing one fruit only from one box only. If you coose correctly, you will be able to determine the correct contents of all three boxes. <br> Hint: the boxes are mislabelled, so remember that the "apples" box cannot contain apples.</p>
-        </div>
-        <div class="container">
-            <p>STEP 1: Save your answers using your email address.</p><br>
-            <form>
-                Email Address <br>
-                <input type="text" name="user_email">
-            </form>
-        </div>
-        <div class="container">
-            <p>STEP 2: Select a box to reveal a fruit by clicking on one of the options below. You can only select once, so choose wisely.</p>
-            <div class="row">
-                <div class="peek_box col-sm-3 col-sm-offset-3">
-                    <div draggable="false" ondragstart="drag(event)" id="Apples" class="peek_box drag_toggle"></div>
-                </div>
-                <div class="peek_box col-sm-3 col-sm-offset-1">
-                    <div draggable="false" ondragstart="drag(event)" id="Oranges" class="peek_box drag_toggle"></div>
-                </div>
-                <div class="peek_box col-sm-3 col-sm-offset-1">
-                    <div draggable="false" ondragstart="drag(event)" id="Mixed" class="peek_box drag_toggle"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <p>You've selected the box labeled:</p>
-                </div>
-                <div class="col-sm-12 text-center">
-                    <p class="selection"></p>
+    <div class="container outter_container">
+        <section id="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h1><b>Brain Teaser</b></h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <h4><strong>Boxes of Fruit</strong></h4>
+                        </div>
+                    </div>
+                    <div class="row bottom_spacing">
+                        <div class="col-lg-12 text-center">
+                            <img src="./assets/images/apple.png" alt="">
+                            <img src="./assets/images/orange.png" alt="">
+                        </div>
+                    </div>
                 </div>    
             </div>
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <p>Fruit revealed:</p>
-                </div>
+        </section>
+        
+        <section id="problem">
+            <div class="container inner_container">
                 <div class="row">
-                    <div class="fruit_text col-sm-1 col-sm-offset-5"></div>
-                    <div class="col-sm-1">
-                        <div class="fruit"></div>
+                    <div class="col-sm-10">
+                        <p><strong>Problem:</strong> There are three boxes of fruit. One box is full of oranges ornly. A second box is full of apples only. A third box is a random mix of both. But all three boxes are mislabelled. For example, the box labelled "Apples" may very well be only oranges, or have both oranges and apples.</p>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <p>STEP 3:Now drag the above fruit boxes to the relabeling zones below to have their labels replaced properly. Once you are sure of your answer, please press the relabel button below."</p>                    
-            </div>
-            <div class="row">
-                <div class="relabel_zone col-sm-3 col-sm-offset-2">
-                    <div ondragover="goodToDrag(event)" ondrop="drop(event)" id="apple_zone" class="drop_zone"></div>
-                </div>
-                <div class="relabel_zone col-sm-3 col-sm-offset-1">
-                    <div ondragover="goodToDrag(event)" ondrop="drop(event)" id="orange_zone" class="drop_zone"></div>
-                </div>
-                <div class="relabel_zone col-sm-3 col-sm-offset-1">
-                    <div ondragover="goodToDrag(event)" ondrop="drop(event)" id="mixed_zone" class="drop_zone"></div>
+        </section>
+
+        <section id="solution">
+            <div class="container inner_container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="bottom_spacing"><strong>Solution:</strong> Determine the correct contents of all three boxes by revealing one fruit only from one box only. If you coose correctly, you will be able to determine the correct contents of all three boxes.</p>
+                        <p> Hint: the boxes are mislabelled, so remember that the "apples" box cannot contain apples.</p>                                            </p>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <p class="col-sm-3 col-sm-offset-3">Apples</p>
-                <p class="col-sm-3">Oranges</p>
-                <p class="col-sm-3">Mixed</p>
-            </div>
-            <div class="row">
-                <div class="col-sm-3 col-sm-offset-5 button_resize">
-                    <button type="button" class="btn btn-danger">Relabel Boxes</button>
+        </section>
+
+        <section id="step_1">
+            <div class="container inner_container">
+                <div class="row">
+                    <div class="col-sm-12"> 
+                        <p><strong>STEP 1:</strong> Save your answers using your email address.</p><br>
+                        <form>
+                            Email Address <br>
+                            <input type="text" name="user_email">
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <section id="step_2">  
+            <div class="container inner_container">
+                <div class="row  bottom_spacing">
+                    <div class="col-sm-12">
+                        <p><strong>STEP 2:</strong> Select a box to reveal a fruit by clicking on one of the options below. You can only select once, so choose wisely.</p>                                            
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="peek_box col-sm-3 col-sm-offset-3" style="margin-left:312px;">
+                        <div draggable="false" ondragstart="drag(event)" id="Apples" class="peek_box drag_toggle"></div>
+                    </div>
+                    <div class="peek_box col-sm-3 col-sm-offset-1">
+                        <div draggable="false" ondragstart="drag(event)" id="Oranges" class="peek_box drag_toggle"></div>
+                    </div>
+                    <div class="peek_box col-sm-3 col-sm-offset-1">
+                        <div draggable="false" ondragstart="drag(event)" id="Mixed" class="peek_box drag_toggle"></div>
+                    </div>
+                </div>
+                <div class="row  bottom_spacing">
+                    <div class="col-sm-12 text-center">
+                        <p class="indicator"><strong>You've selected the box labeled:</strong></p>
+                    </div>
+                    <div class="col-sm-12 text-center">
+                        <p class="selection"></p>
+                    </div>    
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <p class="indicator"><strong>revealed:</strong></p>
+                    </div>
+                    <div class="row">
+                        <div class="fruit_text col-sm-1 col-sm-offset-5"></div>
+                        <div class="col-sm-1">
+                            <div class="fruit"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="step_3">
+            <div class="container inner_container bottom_spacing">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p><strong>STEP 3:</strong> Now drag the above fruit boxes to the relabeling zones below to have their labels replaced properly. Once you are sure of your answer, please press the relabel button below."</p>                                            
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="relabel_zone col-sm-3 col-sm-offset-2">
+                        <div ondragover="goodToDrag(event)" ondrop="drop(event)" id="apple_zone" class="drop_zone"></div>
+                    </div>
+                    <div class="relabel_zone col-sm-3 col-sm-offset-1">
+                        <div ondragover="goodToDrag(event)" ondrop="drop(event)" id="orange_zone" class="drop_zone"></div>
+                    </div>
+                    <div class="relabel_zone col-sm-3 col-sm-offset-1">
+                        <div ondragover="goodToDrag(event)" ondrop="drop(event)" id="mixed_zone" class="drop_zone"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="col-sm-3 col-sm-offset-3 nudge_left caution" style="margin-left:239px;">Apples</p>
+                    <p class="col-sm-3 caution" style="margin-left:9px;">Oranges</p>
+                    <p class="col-sm-3 caution" style="margin-left: 31px; margin-right: -8px;">Mixed</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="submit">
+            <div class="container bottom_spacing">
+                <div class="row">
+                    <div class="col-sm-3 col-sm-offset-5" style="margin-left:424px;">
+                        <button type="button" class="btn btn-danger" style="height: 100px; width: 318px; font-size:36px">Relabel Boxes</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
 </body>
 </html>
