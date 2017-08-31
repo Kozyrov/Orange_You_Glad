@@ -1,10 +1,4 @@
-.peek_box {
-    height: 100px;
-    width: 100px;
-    padding-left: initial;
-    background-size: cover;
-    background-color: white;
-}
+
 #Apples {
     background-image: url("../assets/images/apple_box.png");
 }
@@ -13,13 +7,6 @@
 }
 #Mixed {
     background-image: url("../assets/images/mixed_box.png");
-}
-.fruit {
-    height: 50px;
-    width: 50px;
-    background-image: url("../assets/images/mystery.png");
-    background-size: cover;
-    background-color: white;
 }
 #fruit_apple {
     background-image: url("../assets/images/apple.png");
@@ -34,6 +21,20 @@
     background-size: cover;
     background-color: white;
 }
+.fruit {
+    height: 50px;
+    width: 50px;
+    background-image: url("../assets/images/mystery.png");
+    background-size: cover;
+    background-color: white;
+}
+.peek_box {
+    height: 100px;
+    width: 100px;
+    padding-left: initial;
+    background-size: cover;
+    background-color: white;
+}
 .drop_zone {
     height: 100px;
     width: 100px;
@@ -42,6 +43,28 @@
     background-size: cover;
     background-color: transparent;
 }
-.button resize {
-    height: 100px;
+.outter_container{
+    background-color: #cccccc;
+    width: 1170px;
+}
+.inner_container {
+    border-radius: 25px;
+    background-color: white;
+    margin-bottom: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 1084px;
+}
+.bottom_spacing {
+    padding-bottom: 45px;
+}
+.indicator {
+    font-size: 27px;
+}
+.caution {
+    font-size: 20px;
+    color: red;
+}
+strong{
+    font-style: italic;
 }
