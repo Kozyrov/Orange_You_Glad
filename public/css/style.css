@@ -1,29 +1,47 @@
 .peek_box {
-    border: 2px solid black;
     height: 100px;
     width: 100px;
-    background-image: url("../assets/images/fruit_box.png");
+    padding-left: initial;
     background-size: cover;
-    background-color: #cccccc;
+    background-color: white;
 }
-.fruit_mystery {
+#Apples {
+    background-image: url("../assets/images/apple_box.png");
+}
+#Oranges {
+    background-image: url("../assets/images/orange_box.png");
+}
+#Mixed {
+    background-image: url("../assets/images/mixed_box.png");
+}
+.fruit {
     height: 50px;
     width: 50px;
     background-image: url("../assets/images/mystery.png");
     background-size: cover;
     background-color: white;
 }
-.fruit_apple {
-    height: 50px;
-    width: 50px;
+#fruit_apple {
     background-image: url("../assets/images/apple.png");
+}
+#fruit_orange {
+    background-image: url("../assets/images/orange.png");
+}
+.relabel_zone {
+    height: 200px;
+    width: 200px;
+    background-image: url("../assets/images/relabeling_zone.png");
     background-size: cover;
     background-color: white;
 }
-.fruit_orange {
-    height: 50px;
-    width: 50px;
-    background-image: url("../assets/images/orange.png");
+.drop_zone {
+    height: 100px;
+    width: 100px;
+    margin-left: 35px;
+    margin-top: 50px;
     background-size: cover;
-    background-color: white;
+    background-color: transparent;
+}
+.button resize {
+    height: 100px;
 }

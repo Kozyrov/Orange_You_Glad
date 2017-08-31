@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="container">
-            <p>Solution: Determine the correct contents of all three boxes by recealing one fruit only from one box only. If you coose correctly, you will be able to determine the correct contents of all three boxes. <br> Hint: the boxes are mislabelled, so remember that the "apples" box cannot contain apples.</p>
+            <p>Solution: Determine the correct contents of all three boxes by revealing one fruit only from one box only. If you coose correctly, you will be able to determine the correct contents of all three boxes. <br> Hint: the boxes are mislabelled, so remember that the "apples" box cannot contain apples.</p>
         </div>
         <div class="container">
             <p>STEP 1: Save your answers using your email address.</p><br>
@@ -41,11 +41,17 @@
             </form>
         </div>
         <div class="container">
-            <p>STEP 2: Select a box to reveal a fruit by clicking on one of the options below.</p>
+            <p>STEP 2: Select a box to reveal a fruit by clicking on one of the options below. You can only select once, so choose wisely.</p>
             <div class="row">
-                <div id="apples" class="peek_box col-sm-3 col-lg-offset-3"></div>
-                <div id="oranges" class="peek_box col-sm-3 col-lg-offset-1"></div>
-                <div id="both" class="peek_box col-sm-3 col-lg-offset-1"></div>
+                <div class="peek_box col-sm-3 col-sm-offset-3">
+                    <div draggable="false" ondragstart="drag(event)" id="Apples" class="peek_box drag_toggle"></div>
+                </div>
+                <div class="peek_box col-sm-3 col-sm-offset-1">
+                    <div draggable="false" ondragstart="drag(event)" id="Oranges" class="peek_box drag_toggle"></div>
+                </div>
+                <div class="peek_box col-sm-3 col-sm-offset-1">
+                    <div draggable="false" ondragstart="drag(event)" id="Mixed" class="peek_box drag_toggle"></div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm-12 text-center">
@@ -62,26 +68,37 @@
                 <div class="row">
                     <div class="fruit_text col-sm-1 col-sm-offset-5"></div>
                     <div class="col-sm-1">
-                        <div class="fruit_mystery"></div>
+                        <div class="fruit"></div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="container">
             <div class="row">
-                <p>STEP 3:Now drag the above fruit boxes to the dotted square below with the correct labelr answer."</p>                    
+                <p>STEP 3:Now drag the above fruit boxes to the relabeling zones below to have their labels replaced properly. Once you are sure of your answer, please press the relabel button below."</p>                    
             </div>
             <div class="row">
-                <div id="" class="col-sm-3 col-lg-offset-3"></div>
-                <div id="" class="col-sm-3 col-lg-offset-1"></div>
-                <div id="" class="col-sm-3 col-lg-offset-1"></div>
+                <div class="relabel_zone col-sm-3 col-sm-offset-2">
+                    <div ondragover="goodToDrag(event)" ondrop="drop(event)" id="apple_zone" class="drop_zone"></div>
+                </div>
+                <div class="relabel_zone col-sm-3 col-sm-offset-1">
+                    <div ondragover="goodToDrag(event)" ondrop="drop(event)" id="orange_zone" class="drop_zone"></div>
+                </div>
+                <div class="relabel_zone col-sm-3 col-sm-offset-1">
+                    <div ondragover="goodToDrag(event)" ondrop="drop(event)" id="mixed_zone" class="drop_zone"></div>
+                </div>
             </div>
-            
-            <form>
-                <input name="final_answer" type="button" value="Final Answer">
-            </form>
+            <div class="row">
+                <p class="col-sm-3 col-sm-offset-3">Apples</p>
+                <p class="col-sm-3">Oranges</p>
+                <p class="col-sm-3">Mixed</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-sm-offset-5 button_resize">
+                    <button type="button" class="btn btn-danger">Relabel Boxes</button>
+                </div>
+            </div>
         </div>
-        <div class="user_report"></div>
     </div>
 </body>
 </html>
