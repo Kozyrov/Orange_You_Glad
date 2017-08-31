@@ -81,11 +81,11 @@ function win_condition_evaluation(email){
     
     if(win_array.length!==0){
         alert("You've labeled the boxes incorrectly. If you'd like to try again, refresh the page.");
-        let user_result = new User_result(email, win_array, true);
+        let user_result = new User_result(email, win_array, false);
         input_result(user_result);
     } else {
         alert("You've labeled the boxes correctly! Congratulations!");
-        let user_result = new User_result(email, win_array, false);
+        let user_result = new User_result(email, win_array, true);
         input_result(user_result);
     };
 };
