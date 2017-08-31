@@ -7,20 +7,37 @@ $(document).ready(function(){
     });
 });
 
+function goodToDrag(event){
+    event.preventDefault();
+}
+
+function drag(event){
+    event.dataTransfer.setData('text', event.target.id)
+}
+
+function drop(event){
+    event.preventDefault();
+    let data = event.dataTransfer.getData('text');
+    event.target.appendChild(document.getElementById(data));
+}
+
 function fruit_selection(){
     //once they click the box they want to see what fruit came out.
     let selected_box = $(event.currentTarget).attr('id');
+    $(".selection").text(selected_box);
     //no matter which box, the fruit is random between the two
     let random = Math.round(Math.random());
     if (random===1){
-        $(".fruit_mystery").toggleClass('fruit_orange');
+        $(".fruit").attr('id', 'fruit_orange');
         $(".fruit_text").text("Orange");
     } else {
-        $(".fruit_mystery").toggleClass('fruit_apple');
+        $(".fruit").attr('id','fruit_apple');
         $(".fruit_text").text("Apple");
     }
     //remove the click handler on the .peek_box
     $(".peek_box").off("click");
+    //add the drag and drop functionality
+    $(".drag_toggle").attr("draggable", true);
 }
 
 function form_evaluation(){
