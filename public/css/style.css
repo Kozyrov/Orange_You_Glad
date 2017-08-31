@@ -42,3 +42,6 @@
     background-size: cover;
     background-color: transparent;
 }
+.button resize {
+    height: 100px;
+}

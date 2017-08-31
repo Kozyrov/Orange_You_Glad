@@ -1,9 +1,13 @@
 $(document).ready(function(){
-    $(".peek_box").click(fruit_selection());
-    $(":button").click(form_evaluation());
+    $(".peek_box").click(()=>{
+        fruit_selection()
+    });
+    $(":button").click(()=>{
+        form_evaluation()}
+    );
 });
 
-var win_array = null;
+var random = null;
 
 function goodToDrag(event){
     event.preventDefault();
@@ -24,7 +28,7 @@ function fruit_selection(){
     let selected_box = $(event.currentTarget).attr('id');
     $(".selection").text(selected_box);
     //no matter which box, the fruit is random between the two
-    let random = Math.round(Math.random());
+    random = Math.round(Math.random());
     if (random===1){
         $(".fruit").attr('id', 'fruit_orange');
         $(".fruit_text").text("Orange");
@@ -36,11 +40,6 @@ function fruit_selection(){
     $(".peek_box").off("click");
     //add the drag and drop functionality
     $(".drag_toggle").attr("draggable", true);
-    if (selected_box!=="Mixed"){
-        return;
-    } else {
-        win_condition_set(random);
-    }
 }
 
 function form_evaluation(){
@@ -58,37 +57,35 @@ function form_evaluation(){
     }  
     $(":button").val("Submitted")
 }
-//this function seems clumsy...
-function win_condition_set(val) {
-    let apple_win = null;
-    let orange_win = null;
-    let mixed_win = null;
-    if(val===1){
-        apple_win = $("apple_zone").find("#Orange").length;
-        orange_win = $("orange_zone").find("#Mixed").length;
-        mixed_win = $("mixed_zone").find("#Apple").length;
-    } else {
-        apple_win = $("apple_zone").find('#Mixed').length;
-        orange_win = $("orange_zone").find("#Apple").length;
-        mixed_win = $("mixed_zone").find("#Orange").length;
-    }
-    win_array=[apple_win, orange_win, mixed_win];
-};
 
 function win_condition_evaluation(email){    
-    for(i=0;i<win_array.length;i++){
-        if(win_array[i]> 0){
-            win_array.splice(i,1);
+    var apple_win = null;
+    var orange_win = null;
+    var mixed_win = null;
+    if(random===1){
+        apple_win = $("div#apple_zone").find("#Oranges").length;
+        orange_win = $("div#orange_zone").find("#Mixed").length;
+        mixed_win = $("div#mixed_zone").find("#Apples").length;
+    } else {
+        apple_win = $("div#apple_zone").find('#Mixed').length;
+        orange_win = $("div#orange_zone").find("#Apples").length;
+        mixed_win = $("div#mixed_zone").find("#Oranges").length;
+    }
+    var win_array=[apple_win, orange_win, mixed_win];
+
+    for(i=0;i<3;i++){
+        if(win_array[0]>0){
+            win_array.splice(0,1);
         }
     }
     
     if(win_array.length!==0){
-        let current_user = new User_result(email, win_array, false);
-        input_result(user_result);
         alert("You've labeled the boxes incorrectly. If you'd like to try again, refresh the page.");
+        let user_result = new User_result(email, win_array, true);
+        input_result(user_result);
     } else {
-        let current_user = new User_result(email, win_array, true);
         alert("You've labeled the boxes correctly! Congratulations!");
+        let user_result = new User_result(email, win_array, false);
         input_result(user_result);
     };
 };
@@ -104,12 +101,12 @@ function input_result(user_result){
             console.log(res);
         },
         error: (xhr, ajaxOptions, thrownError)=>{
-            console.log(thrownError);
+            console.log(xhr, thrownError);
         }
     })
 }
 
-function User_result(email ,answer, correct){
+function User_result(email, answer, correct){
     this.email = email;
     this.answer = answer;
     this.correct= correct;
