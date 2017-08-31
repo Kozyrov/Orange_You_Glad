@@ -1,0 +1,29 @@
+.peek_box {
+    border: 2px solid black;
+    height: 100px;
+    width: 100px;
+    background-image: url("../assets/images/fruit_box.png");
+    background-size: cover;
+    background-color: #cccccc;
+}
+.fruit_mystery {
+    height: 50px;
+    width: 50px;
+    background-image: url("../assets/images/mystery.png");
+    background-size: cover;
+    background-color: white;
+}
+.fruit_apple {
+    height: 50px;
+    width: 50px;
+    background-image: url("../assets/images/apple.png");
+    background-size: cover;
+    background-color: white;
+}
+.fruit_orange {
+    height: 50px;
+    width: 50px;
+    background-image: url("../assets/images/orange.png");
+    background-size: cover;
+    background-color: white;
+}
