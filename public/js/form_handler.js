@@ -5,6 +5,9 @@ $(document).ready(function(){
     $(":button").click(()=>{
         form_evaluation()}
     );
+    $(".email_input").click(()=>{
+        message_clear();
+    })
 });
 
 var random = null;
@@ -24,9 +27,11 @@ function drop(event){
 }
 
 function fruit_selection(){
+    //clear any validation messages
+    message_clear();
     //once they click the box they want to see what fruit came out.
     let selected_box = $(event.currentTarget).attr('id');
-    $(".selection").text(selected_box);
+    $(".selection").addClass("clicked").text(selected_box);
     //no matter which box, the fruit is random between the two
     random = Math.round(Math.random());
     if (random===1){
@@ -41,19 +46,28 @@ function fruit_selection(){
     //add the drag and drop functionality
     $(".drag_toggle").attr("draggable", true);
 }
-
+function message_clear(){
+    $(".validation_message, .email_validation, .selection").text("");
+    $("input").css({"border":"1px solid grey"});
+    $(".selection").css({"color":"black"});
+}
 function form_evaluation(){
     //validate the email
     let email_regex = /^[a-zA-Z0-9_\.\+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-\.]+$/
     let email = $("input[type='text'][name='user_email']").val();
     //validate submitted answer
     if (email_regex.test(email)!==true){
-        console.log("the email entered is not valid");
+        $("input").css({"border":"3px solid red"});
+        $(".validation_message, .email_validation").text("Please provide a valid email, so your results may be recorded.");
         return;
     } else {
-        console.log("Email valid")
-        //hand the newly validate email to the user object constructor
-        win_condition_evaluation(email);
+        //evaluate the puzzle to see that they have made a fruit selection.
+        if($(".selection").hasClass("clicked")) {
+            win_condition_evaluation(email);
+        } else {    
+            $(".validation_message, .selection").text("You should click or tap one of the boxes to check inside. Remember, you only get one chance, so choose carefully.");
+            $(".selection").css({"color":"red"});
+        }
     }  
     $(":button").val("Submitted")
 }

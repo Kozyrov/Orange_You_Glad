@@ -65,6 +65,9 @@
     font-size: 20px;
     color: red;
 }
+.validation_message {
+    color: red;
+}
 strong{
     font-style: italic;
 }

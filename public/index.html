@@ -36,7 +36,7 @@
             <div class="container inner_container">
                 <div class="row">
                     <div class="col-sm-10">
-                        <p><strong>Problem:</strong> There are three boxes of fruit. One box is full of oranges ornly. A second box is full of apples only. A third box is a random mix of both. But all three boxes are mislabelled. For example, the box labelled "Apples" may very well be only oranges, or have both oranges and apples.</p>
+                        <p><strong>Problem:</strong> There are three boxes of fruit. One box is full of oranges only. A second box is full of apples only. A third box is a random mix of both. But all three boxes are mislabelled. For example, the box labelled "Apples" may very well be only oranges, or have both oranges and apples.</p>
                     </div>
                 </div>
             </div>
@@ -59,8 +59,8 @@
                     <div class="col-sm-12"> 
                         <p><strong>STEP 1:</strong> Save your answers using your email address.</p><br>
                         <form>
-                            Email Address <br>
-                            <input type="text" name="user_email">
+                            <span>Email Address</span> <br>
+                            <input class="email_input" type="text" name="user_email"><span style="color: red"class="email_validation"></span>
                         </form>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                         <p class="indicator"><strong>You've selected the box labeled:</strong></p>
                     </div>
                     <div class="col-sm-12 text-center">
-                        <p class="selection"></p>
+                        <span class="selection"></span>
                     </div>    
                 </div>
                 <div class="row">
@@ -138,6 +138,7 @@
                 <div class="row">
                     <div class="col-sm-11" style="margin-left:3%;">
                         <button type="button" class="btn btn-danger" style="height: 100px; width: 100%; font-size:36px">Relabel Boxes</button>
+                        <span class="col-sm-12 text-center validation_message"></span>
                     </div>
                 </div>
             </div>
