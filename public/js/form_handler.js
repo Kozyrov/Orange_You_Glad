@@ -110,15 +110,15 @@ function input_result(user_result){
         dataType: 'JSON',
         data: user_result,
         method:'POST',
-        url: 'https://orange-you-glad.herokuapp.com/results',
+        url: 'http://localhost:3001/results',
         success: (res)=>{
             console.log(res);
         },
         error: (xhr, ajaxOptions, thrownError)=>{
             console.log(xhr, thrownError);
         }
-    })
-}
+    });
+};
 
 function User_result(email, answer, correct){
     this.email = email;
