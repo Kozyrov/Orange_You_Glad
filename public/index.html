@@ -46,7 +46,7 @@
             <div class="container inner_container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <p class="bottom_spacing"><strong>Solution:</strong> Determine the correct contents of all three boxes by revealing one fruit only from one box only. If you coose correctly, you will be able to determine the correct contents of all three boxes.</p>
+                        <p class="bottom_spacing"><strong>Solution:</strong> Determine the correct contents of all three boxes by revealing one fruit only from one box only. If you choose correctly, you will be able to determine the correct contents of all three boxes.</p>
                         <p> Hint: the boxes are mislabelled, so remember that the "apples" box cannot contain apples.</p>                                            </p>
                     </div>
                 </div>
@@ -75,13 +75,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="peek_box col-sm-3 col-sm-offset-3" style="margin-left:312px;">
+                    <div id="Apples_start" class="peek_box col-sm-3 col-sm-offset-3" style="margin-left:312px;">
                         <div draggable="false" ondragstart="drag(event)" id="Apples" class="peek_box drag_toggle"></div>
                     </div>
-                    <div class="peek_box col-sm-3 col-sm-offset-1">
+                    <div id="Oranges_start" class="peek_box col-sm-3 col-sm-offset-1">
                         <div draggable="false" ondragstart="drag(event)" id="Oranges" class="peek_box drag_toggle"></div>
                     </div>
-                    <div class="peek_box col-sm-3 col-sm-offset-1">
+                    <div id="Mixed_start" class="peek_box col-sm-3 col-sm-offset-1">
                         <div draggable="false" ondragstart="drag(event)" id="Mixed" class="peek_box drag_toggle"></div>
                     </div>
                 </div>
@@ -130,6 +130,9 @@
                     <p class="col-sm-3 caution" style="margin-left:9px;">Oranges</p>
                     <p class="col-sm-3 caution" style="margin-left: 31px; margin-right: -8px;">Mixed</p>
                 </div>
+                <div class="row">
+                    <div id="zone_note" class="col-sm-12 text-center"></div>
+                </div>
             </div>
         </section>
 
@@ -140,6 +143,22 @@
                         <button type="button" class="btn btn-danger" style="height: 100px; width: 100%; font-size:36px">Relabel Boxes</button>
                         <span class="col-sm-12 text-center validation_message"></span>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Message Modal -->
+        <section>
+            <div id="msgModal" class="modal fade" role="dialogue">
+                <div class="modal-dialogue">
+                    
+                    <div class="modal-content">
+                        <div class="modal-body text-center"></div>
+                        <div class="modal-footer">
+                            <button id="msgModalBtn"></button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>

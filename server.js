@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require('cors');
 
 const {mongoose} = require('./server/db/mongoose');
 const {Result} = require('./server/models/result');
@@ -8,6 +9,7 @@ const {Result} = require('./server/models/result');
 var app = express();
 const port = process.env.PORT || 3001;
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.resolve('public')));

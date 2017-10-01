@@ -68,6 +68,15 @@
 .validation_message {
     color: red;
 }
+.modal-content {
+    width: 25%;
+    position: absolute;
+    left: 37%;
+    top: 37%;
+}
+.modal-body {
+    font-size: 1.5em;
+}
 strong{
     font-style: italic;
 }
