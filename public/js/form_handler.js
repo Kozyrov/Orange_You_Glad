@@ -1,3 +1,10 @@
+window.onload = function() {
+    let userEmail = localStorage.getItem("userEmail");
+    if (userEmail !== null) {
+        $(".email_input").val(userEmail);
+    };
+};
+
 $(document).ready(function(){
     $(".peek_box").click(()=>{
         fruit_selection()
@@ -7,50 +14,71 @@ $(document).ready(function(){
     );
     $(".email_input").click(()=>{
         message_clear();
-    })
+    });
+    window.onbeforeunload = function() {
+        localStorage.setItem("userEmail", $(".email_input").val());
+        let test = localStorage.getItem("userEmail");
+    };
 });
 
 var random = null;
 
 function goodToDrag(event){
     event.preventDefault();
-}
+};
 
 function drag(event){
     event.dataTransfer.setData('text', event.target.id)
-}
+};
 
 function drop(event){
-    event.preventDefault();
+    peek_array = ["Apples", "Oranges", "Mixed"];
     let data = event.dataTransfer.getData('text');
-    event.target.appendChild(document.getElementById(data));
-}
+    
+    if($.inArray(event.target.id, peek_array) >= 0) {
+        let bottom_element = event.target.id;
+        let drop_target = event.target.parentNode;
+        
+        event.preventDefault();
+        $("#"+bottom_element).detach().appendTo("#"+bottom_element+"_start");
+        drop_target.appendChild(document.getElementById(data));
+    } else {
+        event.preventDefault();
+        event.target.appendChild(document.getElementById(data));
+    };
+};
 
 function fruit_selection(){
     //clear any validation messages
     message_clear();
     //once they click the box they want to see what fruit came out.
     let selected_box = $(event.currentTarget).attr('id');
-    $(".selection").addClass("clicked").text(selected_box);
+    $(".selection").addClass("clicked").text(selected_box).css({"font-size":"2em"});
     //no matter which box, the fruit is random between the two
     random = Math.round(Math.random());
     if (random===1){
         $(".fruit").attr('id', 'fruit_orange');
-        $(".fruit_text").text("Orange");
+        $(".fruit_text").text("Orange").css({"font-size":"2em"});
     } else {
         $(".fruit").attr('id','fruit_apple');
-        $(".fruit_text").text("Apple");
-    }
+        $(".fruit_text").text("Apple").css({"font-size":"2em"});
+    };
     //remove the click handler on the .peek_box
     $(".peek_box").off("click");
     //add the drag and drop functionality
     $(".drag_toggle").attr("draggable", true);
-}
+};
+
 function message_clear(){
-    $(".validation_message, .email_validation, .selection").text("");
-    $("input").css({"border":"1px solid grey"});
-    $(".selection").css({"color":"black"});
-}
+    if($(".selection").hasClass("clicked")) {
+       return;
+    } else {
+        $(".validation_message, .email_validation, .selection").text("");
+        $("input").css({"border":"1px solid grey"});
+        $(".selection").css({"color":"black"});
+    };
+};
+
 function form_evaluation(){
     //validate the email
     let email_regex = /^[a-zA-Z0-9_\.\+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-\.]+$/
@@ -58,24 +86,48 @@ function form_evaluation(){
     //validate submitted answer
     if (email_regex.test(email)!==true){
         $("input").css({"border":"3px solid red"});
-        $(".validation_message, .email_validation").text("Please provide a valid email, so your results may be recorded.");
+        $(".validation_message, .email_validation").text("Please provide a valid email, so your results may be recorded.").css({"font-size":"1em"});
         return;
     } else {
         //evaluate the puzzle to see that they have made a fruit selection.
         if($(".selection").hasClass("clicked")) {
-            win_condition_evaluation(email);
+            zone_check();
         } else {    
             $(".validation_message, .selection").text("You should click or tap one of the boxes to check inside. Remember, you only get one chance, so choose carefully.");
-            $(".selection").css({"color":"red"});
-        }
-    }  
+            $(".selection").css({"color":"red", "font-size":"1.5em"});
+        };
+    };  
     $(":button").val("Submitted")
-}
+};
 
-function win_condition_evaluation(email){    
-    var apple_win = null;
-    var orange_win = null;
-    var mixed_win = null;
+function zone_check() {
+    let zone_array = ["apple", "orange", "mixed"];
+    let result_array = [];
+
+    for (i=0;i<3;i++){
+        result_array.push($("div#"+zone_array[i]+"_zone").find("div.peek_box").length);
+    };
+
+    for(i=0;i<3;i++){
+        if(result_array[0]>0){
+            result_array.splice(0,1);
+        };
+    };
+
+    if(result_array.length !== 0){
+        $("#zone_note").text("There aren't enough boxes placed. Please place all of the boxes before trying to relabel them.").css({"color":"red", "font-size":"1.5em"});
+        return;
+    } else {
+        win_condition_evaluation(localStorage.getItem("userEmail"));
+    }
+};
+
+function win_condition_evaluation(email){  
+    
+    let apple_win = null;
+    let orange_win = null;
+    let mixed_win = null;
+
     if(random===1){
         apple_win = $("div#apple_zone").find("#Oranges").length;
         orange_win = $("div#orange_zone").find("#Mixed").length;
@@ -84,21 +136,38 @@ function win_condition_evaluation(email){
         apple_win = $("div#apple_zone").find('#Mixed').length;
         orange_win = $("div#orange_zone").find("#Apples").length;
         mixed_win = $("div#mixed_zone").find("#Oranges").length;
-    }
-    var win_array=[apple_win, orange_win, mixed_win];
+    };
+
+    let win_array=[apple_win, orange_win, mixed_win];
 
     for(i=0;i<3;i++){
         if(win_array[0]>0){
             win_array.splice(0,1);
-        }
-    }
+        };
+    };
     
     if(win_array.length!==0){
-        alert("You've labeled the boxes incorrectly. If you'd like to try again, refresh the page.");
+        $("#msgModal").modal({
+            show: true,
+            keyboard: false, 
+            backdrop: "static"
+        });
+        $(".modal-body").text("Sorry, that answer was incorrect. You can try again if you'd like.");
+        $("#msgModalBtn").text("Re-Try").addClass("btn btn-danger").click(function() {
+            location.reload();
+        });
         let user_result = new User_result(email, win_array, false);
         input_result(user_result);
     } else {
-        alert("You've labeled the boxes correctly! Congratulations!");
+        $("#msgModal").modal({
+            show: true,
+            keyboard: false, 
+            backdrop: "static"
+        });
+        $(".modal-body").text("Congratulations! Your answer was correct.");
+        $("#msgModalBtn").text("Play Again").addClass("btn btn-primary").click(function() {
+            location.reload();
+        });
         let user_result = new User_result(email, win_array, true);
         input_result(user_result);
     };
@@ -110,19 +179,19 @@ function input_result(user_result){
         dataType: 'JSON',
         data: user_result,
         method:'POST',
-        url: 'https://orange-you-glad.herokuapp.com/results',
+        url: 'http://localhost:3001/results',
         success: (res)=>{
             console.log(res);
         },
         error: (xhr, ajaxOptions, thrownError)=>{
             console.log(xhr, thrownError);
         }
-    })
-}
+    });
+};
 
 function User_result(email, answer, correct){
     this.email = email;
     this.answer = answer;
     this.correct= correct;
-}
+};
 
