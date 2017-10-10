@@ -9,7 +9,7 @@ $(document).ready(function(){
     $(".peek_box").click(()=>{
         fruit_selection()
     });
-    $(":button").click(()=>{
+    $("#relabel").click(()=>{
         form_evaluation()}
     );
     $(".email_input").click(()=>{
@@ -22,6 +22,7 @@ $(document).ready(function(){
 });
 
 var random = null;
+var selected_box = null;
 
 function goodToDrag(event){
     event.preventDefault();
@@ -48,11 +49,14 @@ function drop(event){
     };
 };
 
+//this should likely be an object that generates and stores the current game state.
+//Other objects to include might be one that deals with displaying messages to the user,
+//transferring and recieving data from the api, and receiving the user actions.
 function fruit_selection(){
     //clear any validation messages
     message_clear();
     //once they click the box they want to see what fruit came out.
-    let selected_box = $(event.currentTarget).attr('id');
+    selected_box = $(event.currentTarget).attr('id');
     $(".selection").addClass("clicked").text(selected_box).css({"font-size":"2em"});
     //no matter which box, the fruit is random between the two
     random = Math.round(Math.random());
@@ -122,21 +126,55 @@ function zone_check() {
     }
 };
 
-function win_condition_evaluation(email){  
-    
+function win_condition_evaluation(email){ 
     let apple_win = null;
     let orange_win = null;
     let mixed_win = null;
 
-    if(random===1){
+    switch (true) {
+
+        case random === 1 && selected_box === "Mixed":
         apple_win = $("div#apple_zone").find("#Oranges").length;
         orange_win = $("div#orange_zone").find("#Mixed").length;
         mixed_win = $("div#mixed_zone").find("#Apples").length;
-    } else {
+        break;
+
+        case random === 0 && selected_box === "Apples":
+        apple_win = $("div#apple_zone").find("#Oranges").length;
+        orange_win = $("div#orange_zone").find("#Mixed").length;
+        mixed_win = $("div#mixed_zone").find("#Apples").length;
+        break;
+
+        case random === 0 && selected_box === "Mixed":
         apple_win = $("div#apple_zone").find('#Mixed').length;
         orange_win = $("div#orange_zone").find("#Apples").length;
         mixed_win = $("div#mixed_zone").find("#Oranges").length;
+        break;
+
+        case random === 1 && selected_box === "Oranges":
+        apple_win = $("div#apple_zone").find('#Mixed').length;
+        orange_win = $("div#orange_zone").find("#Apples").length;
+        mixed_win = $("div#mixed_zone").find("#Oranges").length;
+        break;
+
+        default: 
+        apple_win = 0;
+        orange_win = 0;
+        mixed_win = 0;
     };
+
+    //todo you've gotta create a series of unique messages to tell the user what is wrong about the answer in relation to their choices.
+    
+
+    // if(random === 1 && selected_box === "Mixed" || random === 0 && selected_box === "Apples"){
+    //     apple_win = $("div#apple_zone").find("#Oranges").length;
+    //     orange_win = $("div#orange_zone").find("#Mixed").length;
+    //     mixed_win = $("div#mixed_zone").find("#Apples").length;
+    // } else if (random === 0 && selected_box === "Mixed" || random === 1 && selected_box === "Oranges") {
+    //     apple_win = $("div#apple_zone").find('#Mixed').length;
+    //     orange_win = $("div#orange_zone").find("#Apples").length;
+    //     mixed_win = $("div#mixed_zone").find("#Oranges").length;
+    // };
 
     let win_array=[apple_win, orange_win, mixed_win];
 
@@ -193,5 +231,13 @@ function User_result(email, answer, correct){
     this.email = email;
     this.answer = answer;
     this.correct= correct;
+    this.selected = selected_box;
+    this.revealed = () => {
+        if (random === 1) {
+            return "Orange Revealed";
+        } else {
+            return "Apple Revealed";
+        };
+    };
 };
 

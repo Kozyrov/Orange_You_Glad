@@ -15,6 +15,12 @@ var Result = mongoose.model('Results', {
                 return /^[a-zA-Z0-9_\.\+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-\.]+$/.test(val);
             }
         }
+    },
+    selected: {
+        type: String,
+    },
+    revealed: {
+        type: String,
     }
 });
 
